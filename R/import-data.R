@@ -1,4 +1,3 @@
-################################################################################
 # data-import.R
 #
 # Vincent Q. Vu
@@ -29,20 +28,10 @@
 #
 # - fips    FIPS code of the geographical area -- U.S. States have a 2 digit
 #           code; counties have a 5 digit code.
-#
-################################################################################
 
-###############################################################################
-# Johns Hopkins CSSE
-# https://github.com/CSSEGISandData/COVID-19
-###############################################################################
-
-# The CSSE data puts dates in the column names and uses separate tables for
-# confirmed cases, deaths, and recovered. We need to pivot longer, then
-# bind the separate tables, then pivot wider again to get the counts into
-# separate columns.
 
 #' Get JHU CSSE look up data
+#' https://github.com/CSSEGISandData/COVID-19
 #'
 #' @return
 #' @export
@@ -51,10 +40,14 @@ get_csse_lookup_data <- function() {
   # on the regions in the CSSE data
   csse_uid_lookup_url <- "https://raw.githubusercontent.com/CSSEGISandData/COVID-19/master/csse_covid_19_data/UID_ISO_FIPS_LookUp_Table.csv"
   readr::read_csv(csse_uid_lookup_url,
-                  col_types = readr::cols(UID = "c", code3 = "c", FIPS = "c"))
+                  col_types = readr::cols(UID = "c", code3 = "c", FIPS = "c")) %>%
+  dplyr::rename(long = Long_) %>%
+  dplyr::rename_all(snakecase::to_snake_case, numerals = "asis")
 }
 
 #' Get JHU CSSE global data
+#'
+#' https://github.com/CSSEGISandData/COVID-19
 #'
 #' @return
 #' @export
@@ -64,6 +57,10 @@ get_csse_global_data <- function() {
     deaths = "https://raw.githubusercontent.com/CSSEGISandData/COVID-19/master/csse_covid_19_data/csse_covid_19_time_series/time_series_covid19_deaths_global.csv",
     recovered = "https://raw.githubusercontent.com/CSSEGISandData/COVID-19/master/csse_covid_19_data/csse_covid_19_time_series/time_series_covid19_recovered_global.csv"
   )
+  # The CSSE data puts dates in the column names and uses separate tables for
+  # confirmed cases, deaths, and recovered. We need to pivot longer, then
+  # bind the separate tables, then pivot wider again to get the counts into
+  # separate columns.
   csse_global_url %>%
     purrr::map(readr::read_csv) %>%
     purrr::map(tidyr::pivot_longer,
@@ -76,10 +73,13 @@ get_csse_global_data <- function() {
     dplyr::rename(cases = confirmed,
                   province_state = `Province/State`,
                   country_region = `Country/Region`) %>%
+    dplyr::rename_all(snakecase::to_snake_case, numerals = "asis") %>%
     dplyr::select(date, province_state, country_region, cases, deaths, dplyr::everything())
 }
 
 #' Get JHU CSSE U.S. data
+#'
+#' https://github.com/CSSEGISandData/COVID-19
 #'
 #' @return
 #' @export
@@ -100,17 +100,18 @@ get_csse_usa_data <- function() {
     dplyr::mutate(date = lubridate::mdy(date)) %>%
     # Fix the poorly formatted FIPS field by replacing it with the one from
     # the lookup table
-    dplyr::left_join(dplyr::select(get_csse_lookup_data(), UID, fips = FIPS),
-                     by = "UID") %>%
-    dplyr::rename(cases = confirmed, state = "Province_State")  %>%
+    dplyr::rename(cases = confirmed, state = "Province_State", 
+                  lat = Lat, long = Long_)  %>%
+    dplyr::rename_all(snakecase::to_snake_case, numerals = "asis") %>%
+    # Add fips
+    dplyr::left_join(dplyr::select(get_csse_lookup_data(), uid, fips),
+                     by = "uid") %>%
     dplyr::select(date, state, fips, cases, deaths, dplyr::everything())
 }
 
-###############################################################################
-# The COVID Tracking Project
-# https://covidtracking.com
-###############################################################################
 #' Get COVID Tracking Project data
+#'
+#' https://covidtracking.com
 #'
 #' @return
 #' @export
@@ -125,14 +126,13 @@ get_covidtracking_data <- function() {
     dplyr::rename(iso2 = state) %>%
     dplyr::left_join(dplyr::select(states_info, state = name, fips), by = "fips") %>%
     dplyr::rename(cases = positive, deaths = death) %>%
+    dplyr::rename_all(snakecase::to_snake_case, numerals = "asis") %>%
     dplyr::select(date, iso2, state, fips, cases, deaths, dplyr::everything())
 }
 
-###############################################################################
-# New York Times
-# https://github.com/nytimes/covid-19-data
-###############################################################################
 #' Get New York Times COVID-19 U.S. County level data
+#'
+#' https://github.com/nytimes/covid-19-data
 #'
 #' @return
 #' @export
@@ -142,9 +142,6 @@ get_nyt_data <- function() {
     dplyr::select(date, state, county, fips, cases, deaths, dplyr::everything())
 }
 
-###############################################################################
-# STAT 5730
-###############################################################################
 #' Get STAT 5730 state executive orders data
 #'
 #' @return
@@ -158,21 +155,19 @@ get_stat5730_data <- function() {
   stat5730_raw %>%
     # Convert the date-time to date
     dplyr::mutate_at(dplyr::vars(stay_at_home:travel_restriction), as.Date) %>%
-    dplyr::left_join(dplyr::select(usmap::statepop, full, fips),
-              by = c("state" = "full")) %>%
+    # Add fips
+    dplyr::left_join(dplyr::filter(fips_codes, is.na(county)), by = "state") %>%
     tidyr::pivot_longer(cols = stay_at_home:travel_restriction,
                         names_to = "order_type",
                         values_to = "date") %>%
-    dplyr::mutate(order_type = stringr::str_replace(order_type, "_", " ")) %>%
+    dplyr::mutate(order_type = stringr::str_replace_all(order_type, "_", " ")) %>%
     dplyr::select(date, state, fips, order_type) %>%
     dplyr::arrange(date)
 }
 
-################################################################################
-# Google Mobility Data
-# https://www.google.com/covid19/mobility/index.html?hl=en
-################################################################################
 #' Get Google Mobility Report
+#'
+#' https://www.google.com/covid19/mobility/index.html?hl=en
 #'
 #' @return
 #' @export
@@ -181,20 +176,12 @@ get_google_mobility_data <- function() {
   google_mobility_raw <- readr::read_csv(google_mobility_url,
                                          col_types = readr::cols(sub_region_2 = "c"))
 
-  # Composite table of FIPS codes for both states and counties
-  fips_county <- usmap::countypop %>%
-    dplyr::left_join(dplyr::select(usmap::statepop, abbr, state = full),
-                     by = "abbr") %>%
-    dplyr::select(fips, state, county)
-  fips_state <- usmap::statepop %>%
-    dplyr::transmute(fips = fips, state = full, county = as.character(NA))
-  fips_codes <- dplyr::bind_rows(fips_state, fips_county) %>%
-    dplyr::mutate(country = "United States")
-
   google_mobility_raw %>%
-    dplyr::left_join(fips_codes, by = c("country_region" = "country",
-                                        "sub_region_1" = "state",
-                                        "sub_region_2" = "county")) %>%
+    # Composite table of FIPS codes for both states and counties
+    dplyr::left_join(dplyr::mutate(fips_codes, country = "United States"), 
+                     by = c("country_region" = "country",
+                            "sub_region_1" = "state",
+                            "sub_region_2" = "county")) %>%
     tidyr::pivot_longer(cols = dplyr::ends_with("percent_change_from_baseline"),
                         names_to = "type",
                         values_to = "percent_change") %>%

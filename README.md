@@ -53,7 +53,7 @@ different regions globally.
 ``` r
 (csse_global <- get_csse_global_data())
 #> # A tibble: 25,760 x 8
-#>    date       province_state country_region cases deaths   Lat  Long recovered
+#>    date       province_state country_region cases deaths   lat  long recovered
 #>    <date>     <chr>          <chr>          <dbl>  <dbl> <dbl> <dbl>     <dbl>
 #>  1 2020-01-22 <NA>           Afghanistan        0      0    33    65         0
 #>  2 2020-01-23 <NA>           Afghanistan        0      0    33    65         0
@@ -68,7 +68,7 @@ different regions globally.
 #> # … with 25,750 more rows
 (csse_usa <- get_csse_usa_data())
 #> # A tibble: 300,012 x 14
-#>    date       state fips  cases deaths UID   iso2  iso3  code3 Admin2
+#>    date       state fips  cases deaths uid   iso2  iso3  code3 admin2
 #>    <date>     <chr> <chr> <dbl>  <dbl> <chr> <chr> <chr> <chr> <chr> 
 #>  1 2020-01-22 Amer… 60        0      0 16    AS    ASM   16    <NA>  
 #>  2 2020-01-23 Amer… 60        0      0 16    AS    ASM   16    <NA>  
@@ -80,11 +80,11 @@ different regions globally.
 #>  8 2020-01-29 Amer… 60        0      0 16    AS    ASM   16    <NA>  
 #>  9 2020-01-30 Amer… 60        0      0 16    AS    ASM   16    <NA>  
 #> 10 2020-01-31 Amer… 60        0      0 16    AS    ASM   16    <NA>  
-#> # … with 300,002 more rows, and 4 more variables: Country_Region <chr>,
-#> #   Lat <dbl>, Long_ <dbl>, Combined_Key <chr>
+#> # … with 300,002 more rows, and 4 more variables: country_region <chr>,
+#> #   lat <dbl>, long <dbl>, combined_key <chr>
 (csse_lookup <- get_csse_lookup_data())
 #> # A tibble: 3,590 x 12
-#>    UID   iso2  iso3  code3 FIPS  Admin2 Province_State Country_Region   Lat
+#>    uid   iso2  iso3  code3 fips  admin2 province_state country_region   lat
 #>    <chr> <chr> <chr> <chr> <chr> <chr>  <chr>          <chr>          <dbl>
 #>  1 4     AF    AFG   4     <NA>  <NA>   <NA>           Afghanistan     33.9
 #>  2 8     AL    ALB   8     <NA>  <NA>   <NA>           Albania         41.2
@@ -96,8 +96,8 @@ different regions globally.
 #>  8 51    AM    ARM   51    <NA>  <NA>   <NA>           Armenia         40.1
 #>  9 40    AT    AUT   40    <NA>  <NA>   <NA>           Austria         47.5
 #> 10 31    AZ    AZE   31    <NA>  <NA>   <NA>           Azerbaijan      40.1
-#> # … with 3,580 more rows, and 3 more variables: Long_ <dbl>,
-#> #   Combined_Key <chr>, Population <dbl>
+#> # … with 3,580 more rows, and 3 more variables: long <dbl>, combined_key <chr>,
+#> #   population <dbl>
 ```
 
 ### COVID Tracking Project
@@ -111,8 +111,8 @@ numbers of tests and negative results.
 
 ``` r
 (covidtracking <- get_covidtracking_data())
-#> # A tibble: 2,676 x 26
-#>    date       iso2  state fips  cases deaths negative pending hospitalizedCur…
+#> # A tibble: 2,713 x 26
+#>    date       iso2  state fips  cases deaths negative pending hospitalized_cu…
 #>    <date>     <chr> <chr> <chr> <dbl>  <dbl>    <dbl>   <dbl>            <dbl>
 #>  1 2020-04-22 AK    Alas… 02      335      9    11824      NA               39
 #>  2 2020-04-22 AL    Alab… 01     5465    194    43295      NA               NA
@@ -124,13 +124,13 @@ numbers of tests and negative results.
 #>  8 2020-04-22 CT    Conn… 09    22469   1544    47449      NA             1972
 #>  9 2020-04-22 DC    Dist… 11     3206    127    12296      NA              402
 #> 10 2020-04-22 DE    Dela… 10     3200     89    13353      NA              269
-#> # … with 2,666 more rows, and 17 more variables: hospitalizedCumulative <dbl>,
-#> #   inIcuCurrently <dbl>, inIcuCumulative <dbl>, onVentilatorCurrently <dbl>,
-#> #   onVentilatorCumulative <dbl>, recovered <dbl>, hash <chr>,
-#> #   dateChecked <dttm>, hospitalized <dbl>, total <dbl>,
-#> #   totalTestResults <dbl>, posNeg <dbl>, deathIncrease <dbl>,
-#> #   hospitalizedIncrease <dbl>, negativeIncrease <dbl>, positiveIncrease <dbl>,
-#> #   totalTestResultsIncrease <dbl>
+#> # … with 2,703 more rows, and 17 more variables: hospitalized_cumulative <dbl>,
+#> #   in_icu_currently <dbl>, in_icu_cumulative <dbl>,
+#> #   on_ventilator_currently <dbl>, on_ventilator_cumulative <dbl>,
+#> #   recovered <dbl>, hash <chr>, date_checked <dttm>, hospitalized <dbl>,
+#> #   total <dbl>, total_test_results <dbl>, pos_neg <dbl>, death_increase <dbl>,
+#> #   hospitalized_increase <dbl>, negative_increase <dbl>,
+#> #   positive_increase <dbl>, total_test_results_increase <dbl>
 ```
 
 ### New York Times
@@ -142,7 +142,7 @@ on collecting daily case and death counts at the U.S. county level.
 
 ``` r
 (nyt <- get_nyt_data())
-#> # A tibble: 78,548 x 6
+#> # A tibble: 81,339 x 6
 #>    date       state      county      fips  cases deaths
 #>    <date>     <chr>      <chr>       <chr> <dbl>  <dbl>
 #>  1 2020-01-21 Washington Snohomish   53061     1      0
@@ -155,7 +155,7 @@ on collecting daily case and death counts at the U.S. county level.
 #>  8 2020-01-25 Washington Snohomish   53061     1      0
 #>  9 2020-01-26 Arizona    Maricopa    04013     1      0
 #> 10 2020-01-26 California Los Angeles 06037     1      0
-#> # … with 78,538 more rows
+#> # … with 81,329 more rows
 ```
 
 ### STAT 5730
@@ -201,8 +201,8 @@ Notes from Google:
 
 ``` r
 (google_mobility <- get_google_mobility_data())
-#> # A tibble: 1,344,882 x 8
-#>    country_region_… country_region sub_region_1 sub_region_2 date       fips 
+#> # A tibble: 1,344,882 x 9
+#>    country_region_… country_region sub_region_1 sub_region_2 date       abbr 
 #>    <chr>            <chr>          <chr>        <chr>        <date>     <chr>
 #>  1 AE               United Arab E… <NA>         <NA>         2020-02-15 <NA> 
 #>  2 AE               United Arab E… <NA>         <NA>         2020-02-15 <NA> 
@@ -214,7 +214,7 @@ Notes from Google:
 #>  8 AE               United Arab E… <NA>         <NA>         2020-02-16 <NA> 
 #>  9 AE               United Arab E… <NA>         <NA>         2020-02-16 <NA> 
 #> 10 AE               United Arab E… <NA>         <NA>         2020-02-16 <NA> 
-#> # … with 1,344,872 more rows, and 2 more variables: type <chr>,
+#> # … with 1,344,872 more rows, and 3 more variables: fips <chr>, type <chr>,
 #> #   percent_change <dbl>
 ```
 

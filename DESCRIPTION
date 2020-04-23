@@ -1,0 +1,27 @@
+Package: stat5730covid19
+Title: COVID-19 Data and Tools for STAT 5730
+Version: 0.0.0.9000
+Authors@R: 
+    person(given = "Vincent",
+           family = "Vu",
+           role = c("aut", "cre"),
+           email = "vqv@stat.osu.edu",
+           comment = c(ORCID = "https://orcid.org/0000-0002-4689-0497"))
+Description: Tools to import COVID-19 data from JHU CSSE, Covid Tracking Project, NY Times, and Google for the students of STAT 5730.
+License: MIT + file LICENSE
+Encoding: UTF-8
+LazyData: true
+Roxygen: list(markdown = TRUE)
+RoxygenNote: 7.1.0
+Imports: 
+    dplyr,
+    lubridate,
+    purrr,
+    readr,
+    tidyr,
+    googlesheets4,
+    magrittr,
+    usmap,
+    stringr
+Depends: 
+    R (>= 2.10)

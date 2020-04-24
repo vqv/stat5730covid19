@@ -9,14 +9,13 @@
 experimental](https://img.shields.io/badge/lifecycle-experimental-orange.svg)](https://www.tidyverse.org/lifecycle/#experimental)
 <!-- badges: end -->
 
-This is an rough and unpolished R package for the students of STAT 5730.
-It contains functions for importing COVID-19 data from the Johns Hopkins
-CSSE group, The COVID Tracking Project, the New York Times, the state
-executive orders shared Google sheet collected by the Spring 2020 STAT
-5730 class, and the Google Mobility Report. The functions do not take
-any arguments. They are meant to encapsulate the data import and
-cleaning, and should only be called whenever the data source is updated
-— generally once a day.
+This is an rough and unpolished R data package for the students of STAT
+5730. It contains data COVID-19 data from the Johns Hopkins CSSE group,
+The COVID Tracking Project, the New York Times, the state executive
+orders shared Google sheet collected by the Spring 2020 STAT 5730 class,
+the Google Mobility Report, and other related data. The data will be
+updated regularly for now, so please reinstall the package to get new
+data.
 
 Where possible, I have included FIPS codes for the geographic regions of
 the United States. This is a standardized code used by the U.S. federal
@@ -51,8 +50,8 @@ COVID-19 pandemic. Their data includes number of cases and deaths in
 different regions globally.
 
 ``` r
-(csse_global <- get_csse_global_data())
-#> # A tibble: 25,760 x 8
+csse_global
+#> # A tibble: 25,854 x 8
 #>    date       province_state country_region cases deaths   lat  long recovered
 #>    <date>     <chr>          <chr>          <dbl>  <dbl> <dbl> <dbl>     <dbl>
 #>  1 2020-01-22 <NA>           Afghanistan        0      0    33    65         0
@@ -65,30 +64,30 @@ different regions globally.
 #>  8 2020-01-29 <NA>           Afghanistan        0      0    33    65         0
 #>  9 2020-01-30 <NA>           Afghanistan        0      0    33    65         0
 #> 10 2020-01-31 <NA>           Afghanistan        0      0    33    65         0
-#> # … with 25,750 more rows
+#> # … with 25,844 more rows
 ```
 
 ``` r
-(csse_usa <- get_csse_usa_data())
-#> # A tibble: 300,012 x 14
+csse_us
+#> # A tibble: 303,366 x 14
 #>    date       state fips  cases deaths uid   iso2  iso3  code3 admin2
 #>    <date>     <chr> <chr> <dbl>  <dbl> <chr> <chr> <chr> <chr> <chr> 
-#>  1 2020-01-22 Amer… 60        0      0 16    AS    ASM   16    <NA>  
-#>  2 2020-01-23 Amer… 60        0      0 16    AS    ASM   16    <NA>  
-#>  3 2020-01-24 Amer… 60        0      0 16    AS    ASM   16    <NA>  
-#>  4 2020-01-25 Amer… 60        0      0 16    AS    ASM   16    <NA>  
-#>  5 2020-01-26 Amer… 60        0      0 16    AS    ASM   16    <NA>  
-#>  6 2020-01-27 Amer… 60        0      0 16    AS    ASM   16    <NA>  
-#>  7 2020-01-28 Amer… 60        0      0 16    AS    ASM   16    <NA>  
-#>  8 2020-01-29 Amer… 60        0      0 16    AS    ASM   16    <NA>  
-#>  9 2020-01-30 Amer… 60        0      0 16    AS    ASM   16    <NA>  
-#> 10 2020-01-31 Amer… 60        0      0 16    AS    ASM   16    <NA>  
-#> # … with 300,002 more rows, and 4 more variables: country_region <chr>,
+#>  1 2020-01-22 Amer… <NA>      0      0 16.0  AS    ASM   16    <NA>  
+#>  2 2020-01-23 Amer… <NA>      0      0 16.0  AS    ASM   16    <NA>  
+#>  3 2020-01-24 Amer… <NA>      0      0 16.0  AS    ASM   16    <NA>  
+#>  4 2020-01-25 Amer… <NA>      0      0 16.0  AS    ASM   16    <NA>  
+#>  5 2020-01-26 Amer… <NA>      0      0 16.0  AS    ASM   16    <NA>  
+#>  6 2020-01-27 Amer… <NA>      0      0 16.0  AS    ASM   16    <NA>  
+#>  7 2020-01-28 Amer… <NA>      0      0 16.0  AS    ASM   16    <NA>  
+#>  8 2020-01-29 Amer… <NA>      0      0 16.0  AS    ASM   16    <NA>  
+#>  9 2020-01-30 Amer… <NA>      0      0 16.0  AS    ASM   16    <NA>  
+#> 10 2020-01-31 Amer… <NA>      0      0 16.0  AS    ASM   16    <NA>  
+#> # … with 303,356 more rows, and 4 more variables: country_region <chr>,
 #> #   lat <dbl>, long <dbl>, combined_key <chr>
 ```
 
 ``` r
-(csse_lookup <- get_csse_lookup_data())
+csse_lookup
 #> # A tibble: 3,590 x 12
 #>    uid   iso2  iso3  code3 fips  admin2 province_state country_region   lat
 #>    <chr> <chr> <chr> <chr> <chr> <chr>  <chr>          <chr>          <dbl>
@@ -111,12 +110,12 @@ different regions globally.
 Source: <https://covidtracking.com>
 
 The COVID Tracking Project was initiated by journalists at The Atlantic
-magazine. The data is mostly based on scraping state government websites
-and provides daily case and death counts at the state level, as well as
-numbers of tests and negative results, and hospital data.
+magazine. The data provides daily case and death counts at the state
+level, as well as numbers of tests and negative results, and hospital
+data.
 
 ``` r
-(covidtracking <- get_covidtracking_data())
+covidtracking
 #> # A tibble: 2,769 x 26
 #>    date       iso2  state fips  cases deaths negative pending hospitalized_cu…
 #>    <date>     <chr> <chr> <chr> <dbl>  <dbl>    <dbl>   <dbl>            <dbl>
@@ -147,7 +146,7 @@ Journalists and data scientists at the New York Times have been working
 on collecting daily case and death counts at the U.S. county level.
 
 ``` r
-(nyt <- get_nyt_data())
+nyt_county
 #> # A tibble: 81,340 x 6
 #>    date       state      county      fips  cases deaths
 #>    <date>     <chr>      <chr>       <chr> <dbl>  <dbl>
@@ -171,7 +170,7 @@ orders made by U.S. state governments mandating school closures, shelter
 in place (stay at home), and travel restrictions.
 
 ``` r
-(stat5730 <- get_stat5730_data())
+state_orders
 #> # A tibble: 220 x 4
 #>    date       state         fips  order_type        
 #>    <date>     <chr>         <chr> <chr>             
@@ -206,7 +205,7 @@ Notes from Google:
 > characteristics (e.g.  rural versus urban areas).
 
 ``` r
-(google_mobility <- get_google_mobility_data())
+google_mobility
 #> # A tibble: 1,384,968 x 9
 #>    country_region_… country_region sub_region_1 sub_region_2 date       abbr 
 #>    <chr>            <chr>          <chr>        <chr>        <date>     <chr>

@@ -4,13 +4,14 @@ output: github_document
 
 <!-- README.md is generated from README.Rmd. Please edit that file -->
 
-```{r, include = FALSE}
+```{r, include = FALSE, message = FALSE}
 knitr::opts_chunk$set(
   collapse = TRUE,
   comment = "#>",
   fig.path = "man/figures/README-",
   out.width = "100%"
 )
+library(tidyverse)
 ```
 
 # stat5730covid19
@@ -19,13 +20,13 @@ knitr::opts_chunk$set(
 [![Lifecycle: experimental](https://img.shields.io/badge/lifecycle-experimental-orange.svg)](https://www.tidyverse.org/lifecycle/#experimental)
 <!-- badges: end -->
 
-This is an rough and unpolished R package for the students of STAT 5730. 
-It contains functions for importing COVID-19 data from the Johns Hopkins CSSE group, 
-The COVID Tracking Project, the New York Times, the state executive orders shared 
-Google sheet collected by the Spring 2020 STAT 5730 class, and the Google Mobility 
-Report. The functions do not take any arguments. They are meant to encapsulate the 
-data import and cleaning, and should only be called whenever the data source is 
-updated --- generally once a day.
+This is an rough and unpolished R data package for the students of STAT 5730.
+It contains data COVID-19 data from the Johns Hopkins
+CSSE group, The COVID Tracking Project, the New York Times, the state
+executive orders shared Google sheet collected by the Spring 2020 STAT
+5730 class, the Google Mobility Report, and other related data. 
+The data will be updated regularly for now, so please reinstall the package 
+to get new data.
 
 Where possible, I have included FIPS codes for the geographic regions of the 
 United States. This is a standardized code used by the U.S. federal government 
@@ -58,14 +59,14 @@ The CSSE group at Johns Hopkins has been collecting data on the global
 COVID-19 pandemic. Their data includes number of cases and deaths in different 
 regions globally.
 
-```{r message = FALSE}
-(csse_global <- get_csse_global_data())
+```{r}
+csse_global
 ```
-```{r message = FALSE}
-(csse_usa <- get_csse_usa_data())
+```{r}
+csse_us
 ```
-```{r message = FALSE}
-(csse_lookup <- get_csse_lookup_data())
+```{r}
+csse_lookup
 ```
 
 ### COVID Tracking Project
@@ -73,12 +74,11 @@ regions globally.
 Source: [https://covidtracking.com](https://covidtracking.com)
 
 The COVID Tracking Project was initiated by journalists at The Atlantic 
-magazine. The data is mostly based on scraping state government websites 
-and provides daily case and death counts at the state level, as well as 
-numbers of tests and negative results, and hospital data.
+magazine. The data provides daily case and death counts at the state level, 
+as well as numbers of tests and negative results, and hospital data.
 
-```{r message = FALSE}
-(covidtracking <- get_covidtracking_data())
+```{r}
+covidtracking
 ```
 
 ### New York Times
@@ -88,8 +88,8 @@ Source: [https://github.com/nytimes/covid-19-data](https://github.com/nytimes/co
 Journalists and data scientists at the New York Times have been working on 
 collecting daily case and death counts at the U.S. county level.
 
-```{r message = FALSE}
-(nyt <- get_nyt_data())
+```{r}
+nyt_county
 ```
 
 ### STAT 5730
@@ -98,8 +98,8 @@ The students of Spring 2020 STAT 5730 collected data on the executive orders
 made by U.S. state governments mandating school closures, shelter in place 
 (stay at home), and travel restrictions.
 
-```{r message = FALSE}
-(stat5730 <- get_stat5730_data())
+```{r}
+state_orders
 ```
 
 ### Google Mobility
@@ -119,8 +119,8 @@ Notes from Google:
 > between countries, or between regions with different characteristics (e.g. 
 > rural versus urban areas).
 
-```{r message = FALSE}
-(google_mobility <- get_google_mobility_data())
+```{r}
+google_mobility
 ```
 
 ### U.S. Census data

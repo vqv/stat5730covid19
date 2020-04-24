@@ -6,7 +6,7 @@
 \alias{stat5730covid19-package}
 \title{stat5730covid19: COVID-19 Data and Tools for STAT 5730}
 \description{
-Tools to import COVID-19 data from JHU CSSE, Covid Tracking Project, NY Times, and Google for the students of STAT 5730.
+COVID-19 data from JHU CSSE, Covid Tracking Project, NY Times, and Google for the students of STAT 5730.
 }
 \author{
 \strong{Maintainer}: Vincent Vu \email{vqv@stat.osu.edu} (\href{https://orcid.org/0000-0002-4689-0497}{ORCID})

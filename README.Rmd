@@ -60,7 +60,11 @@ regions globally.
 
 ```{r message = FALSE}
 (csse_global <- get_csse_global_data())
+```
+```{r message = FALSE}
 (csse_usa <- get_csse_usa_data())
+```
+```{r message = FALSE}
 (csse_lookup <- get_csse_lookup_data())
 ```
 
@@ -71,7 +75,7 @@ Source: [https://covidtracking.com](https://covidtracking.com)
 The COVID Tracking Project was initiated by journalists at The Atlantic 
 magazine. The data is mostly based on scraping state government websites 
 and provides daily case and death counts at the state level, as well as 
-numbers of tests and negative results.
+numbers of tests and negative results, and hospital data.
 
 ```{r message = FALSE}
 (covidtracking <- get_covidtracking_data())
@@ -123,6 +127,10 @@ Notes from Google:
 
 ```{r}
 census_state_pop
+```
+```{r}
 census_county_pop
+```
+```{r}
 census_county_income
 ```

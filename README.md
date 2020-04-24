@@ -66,6 +66,9 @@ different regions globally.
 #>  9 2020-01-30 <NA>           Afghanistan        0      0    33    65         0
 #> 10 2020-01-31 <NA>           Afghanistan        0      0    33    65         0
 #> # … with 25,750 more rows
+```
+
+``` r
 (csse_usa <- get_csse_usa_data())
 #> # A tibble: 300,012 x 14
 #>    date       state fips  cases deaths uid   iso2  iso3  code3 admin2
@@ -82,6 +85,9 @@ different regions globally.
 #> 10 2020-01-31 Amer… 60        0      0 16    AS    ASM   16    <NA>  
 #> # … with 300,002 more rows, and 4 more variables: country_region <chr>,
 #> #   lat <dbl>, long <dbl>, combined_key <chr>
+```
+
+``` r
 (csse_lookup <- get_csse_lookup_data())
 #> # A tibble: 3,590 x 12
 #>    uid   iso2  iso3  code3 fips  admin2 province_state country_region   lat
@@ -107,24 +113,24 @@ Source: <https://covidtracking.com>
 The COVID Tracking Project was initiated by journalists at The Atlantic
 magazine. The data is mostly based on scraping state government websites
 and provides daily case and death counts at the state level, as well as
-numbers of tests and negative results.
+numbers of tests and negative results, and hospital data.
 
 ``` r
 (covidtracking <- get_covidtracking_data())
-#> # A tibble: 2,713 x 26
+#> # A tibble: 2,769 x 26
 #>    date       iso2  state fips  cases deaths negative pending hospitalized_cu…
 #>    <date>     <chr> <chr> <chr> <dbl>  <dbl>    <dbl>   <dbl>            <dbl>
-#>  1 2020-04-22 AK    Alas… 02      335      9    11824      NA               39
-#>  2 2020-04-22 AL    Alab… 01     5465    194    43295      NA               NA
-#>  3 2020-04-22 AR    Arka… 05     2276     42    27437      NA               97
-#>  4 2020-04-22 AS    Amer… 60        0     NA        3      17               NA
-#>  5 2020-04-22 AZ    Ariz… 04     5459    229    51142      NA              664
-#>  6 2020-04-22 CA    Cali… 06    35396   1354   429931      NA             4984
-#>  7 2020-04-22 CO    Colo… 08    10447    486    38257      NA              851
-#>  8 2020-04-22 CT    Conn… 09    22469   1544    47449      NA             1972
-#>  9 2020-04-22 DC    Dist… 11     3206    127    12296      NA              402
-#> 10 2020-04-22 DE    Dela… 10     3200     89    13353      NA              269
-#> # … with 2,703 more rows, and 17 more variables: hospitalized_cumulative <dbl>,
+#>  1 2020-04-23 AK    Alas… 02      337      9    11824      NA               42
+#>  2 2020-04-23 AL    Alab… 01     5778    197    46863      NA               NA
+#>  3 2020-04-23 AR    Arka… 05     2465     45    29125      NA              101
+#>  4 2020-04-23 AS    Amer… 60        0     NA        3      17               NA
+#>  5 2020-04-23 AZ    Ariz… 04     5769    249    52928      NA              699
+#>  6 2020-04-23 CA    Cali… 06    37369   1469   444728      NA             4929
+#>  7 2020-04-23 CO    Colo… 08    10878    508    39767      NA              859
+#>  8 2020-04-23 CT    Conn… 09    23100   1639    48397      NA             1947
+#>  9 2020-04-23 DC    Dist… 11     3361    139    12569      NA              402
+#> 10 2020-04-23 DE    Dela… 10     3308     92    13604      NA              290
+#> # … with 2,759 more rows, and 17 more variables: hospitalized_cumulative <dbl>,
 #> #   in_icu_currently <dbl>, in_icu_cumulative <dbl>,
 #> #   on_ventilator_currently <dbl>, on_ventilator_cumulative <dbl>,
 #> #   recovered <dbl>, hash <chr>, date_checked <dttm>, hospitalized <dbl>,
@@ -142,7 +148,7 @@ on collecting daily case and death counts at the U.S. county level.
 
 ``` r
 (nyt <- get_nyt_data())
-#> # A tibble: 81,339 x 6
+#> # A tibble: 81,340 x 6
 #>    date       state      county      fips  cases deaths
 #>    <date>     <chr>      <chr>       <chr> <dbl>  <dbl>
 #>  1 2020-01-21 Washington Snohomish   53061     1      0
@@ -155,7 +161,7 @@ on collecting daily case and death counts at the U.S. county level.
 #>  8 2020-01-25 Washington Snohomish   53061     1      0
 #>  9 2020-01-26 Arizona    Maricopa    04013     1      0
 #> 10 2020-01-26 California Los Angeles 06037     1      0
-#> # … with 81,329 more rows
+#> # … with 81,330 more rows
 ```
 
 ### STAT 5730
@@ -201,7 +207,7 @@ Notes from Google:
 
 ``` r
 (google_mobility <- get_google_mobility_data())
-#> # A tibble: 1,344,882 x 9
+#> # A tibble: 1,384,968 x 9
 #>    country_region_… country_region sub_region_1 sub_region_2 date       abbr 
 #>    <chr>            <chr>          <chr>        <chr>        <date>     <chr>
 #>  1 AE               United Arab E… <NA>         <NA>         2020-02-15 <NA> 
@@ -214,7 +220,7 @@ Notes from Google:
 #>  8 AE               United Arab E… <NA>         <NA>         2020-02-16 <NA> 
 #>  9 AE               United Arab E… <NA>         <NA>         2020-02-16 <NA> 
 #> 10 AE               United Arab E… <NA>         <NA>         2020-02-16 <NA> 
-#> # … with 1,344,872 more rows, and 3 more variables: fips <chr>, type <chr>,
+#> # … with 1,384,958 more rows, and 3 more variables: fips <chr>, type <chr>,
 #> #   percent_change <dbl>
 ```
 
@@ -236,6 +242,9 @@ census_state_pop
 #>  9 District of Columbia 11      702455 11490.  
 #> 10 Florida              12    21299325   397.  
 #> # … with 42 more rows
+```
+
+``` r
 census_county_pop
 #> # A tibble: 3,220 x 6
 #>    NAME                     GEOID county   state      POP DENSITY
@@ -251,6 +260,9 @@ census_county_pop
 #>  9 Chambers County, Alabama 01017 Chambers Alabama  33615    56.3
 #> 10 Cherokee County, Alabama 01019 Cherokee Alabama  26032    47.0
 #> # … with 3,210 more rows
+```
+
+``` r
 census_county_income
 #> # A tibble: 3,220 x 6
 #>    GEOID NAME                       moe county   state   medincome

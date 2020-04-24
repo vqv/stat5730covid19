@@ -1,31 +1,26 @@
-JHU_CSSE = data/csse_global.rda data/csse_us.rda data/csse_lookup.rda
-
-all: covidtracking google_mobility jhu_csse nyt_county ohio state_orders
+all: covidtracking google_mobility jhu_csse nyt_county ohio state_orders census
 
 readme: README.md
 README.md: README.Rmd
 	Rscript -e "rmarkdown::render('$<')"
 
-jhu_csse: $(JHU_CSSE)
-$(JHU_CSSE):
+jhu_csse:
 	Rscript data-raw/jhu_csse.R
 
-covidtracking: data/covidtracking.rda
-data/covidtracking.rda:
+covidtracking:
 	Rscript data-raw/covidtracking.R
 
-google_mobility: data/google_mobility.rda
-data/google_mobility.rda:
+google_mobility:
 	Rscript data-raw/google_mobility.R
 
-nyt_county: data/nyt_county.rda
-data/nyt_county.rda:
+nyt_county: 
 	Rscript data-raw/nyt_county.R
 
-ohio: data/ohio_coronavirus.rda
-data/ohio_coronavirus.rda:
+ohio: 
 	Rscript data-raw/ohio.R
 
-state_orders: data/state_orders.rda
-data/state_orders.rda:
+state_orders: 
 	Rscript data-raw/state_orders.R
+
+census:
+	Rscript data-raw/us_census.R

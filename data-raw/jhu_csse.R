@@ -37,7 +37,10 @@ get_csse_global_data <- function() {
                   province_state = `Province/State`,
                   country_region = `Country/Region`) %>%
     rename_all(snakecase::to_snake_case, numerals = "asis") %>%
-    select(date, province_state, country_region, cases, deaths, everything())
+    select(date, province_state, country_region, cases, deaths, everything()) %>%
+    # Remove cruise ships and recovered province
+    filter(! (province_state %in% c("Diamond Princess", "Grand Princess", "Recovered")) ) %>%
+    filter(! (country_region %in% c("Diamond Princess")) )
 }
 
 get_csse_us_data <- function() {

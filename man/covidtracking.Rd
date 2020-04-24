@@ -7,6 +7,9 @@
 \format{
 An object of class \code{spec_tbl_df} (inherits from \code{tbl_df}, \code{tbl}, \code{data.frame}) with 2769 rows and 26 columns.
 }
+\source{
+\url{covidtracking.com}
+}
 \usage{
 covidtracking
 }

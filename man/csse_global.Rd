@@ -5,7 +5,7 @@
 \alias{csse_global}
 \title{Johns Hopkins CSSE COVID-19 international data, current as of 2020-04-24}
 \format{
-An object of class \code{tbl_df} (inherits from \code{tbl}, \code{data.frame}) with 25854 rows and 8 columns.
+An object of class \code{tbl_df} (inherits from \code{tbl}, \code{data.frame}) with 25482 rows and 8 columns.
 }
 \source{
 \url{github.com/CSSEGISandData/COVID-19}

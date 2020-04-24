@@ -1,4 +1,4 @@
-all: covidtracking google_mobility jhu_csse nyt_county ohio state_orders census
+all: covidtracking google_mobility jhu_csse nyt_county ohio state_orders
 
 readme: README.md
 README.md: README.Rmd

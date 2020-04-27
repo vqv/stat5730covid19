@@ -3,7 +3,7 @@
 \docType{data}
 \name{state_orders}
 \alias{state_orders}
-\title{U.S. state executive orders data from STAT 5730, current as of 2020-04-24}
+\title{U.S. state executive orders data from STAT 5730, current as of 2020-04-27}
 \format{
 An object of class \code{tbl_df} (inherits from \code{tbl}, \code{data.frame}) with 220 rows and 4 columns.
 }
@@ -11,6 +11,6 @@ An object of class \code{tbl_df} (inherits from \code{tbl}, \code{data.frame}) w
 state_orders
 }
 \description{
-U.S. state executive orders data from STAT 5730, current as of 2020-04-24
+U.S. state executive orders data from STAT 5730, current as of 2020-04-27
 }
 \keyword{datasets}

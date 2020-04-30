@@ -3,9 +3,9 @@
 \docType{data}
 \name{nyt_county}
 \alias{nyt_county}
-\title{New York Times COVID-19 U.S. county-level data, current as of 2020-04-29}
+\title{New York Times COVID-19 U.S. county-level data, current as of 2020-04-30}
 \format{
-An object of class \code{spec_tbl_df} (inherits from \code{tbl_df}, \code{tbl}, \code{data.frame}) with 95420 rows and 6 columns.
+An object of class \code{spec_tbl_df} (inherits from \code{tbl_df}, \code{tbl}, \code{data.frame}) with 101108 rows and 6 columns.
 }
 \source{
 \url{github.com/nytimes/covid-19-data}
@@ -14,6 +14,6 @@ An object of class \code{spec_tbl_df} (inherits from \code{tbl_df}, \code{tbl}, 
 nyt_county
 }
 \description{
-New York Times COVID-19 U.S. county-level data, current as of 2020-04-29
+New York Times COVID-19 U.S. county-level data, current as of 2020-04-30
 }
 \keyword{datasets}

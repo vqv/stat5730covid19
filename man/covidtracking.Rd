@@ -3,9 +3,9 @@
 \docType{data}
 \name{covidtracking}
 \alias{covidtracking}
-\title{COVID-19 data from COVID Tracking Project, current as of 2020-04-30}
+\title{COVID-19 data from COVID Tracking Project, current as of 2020-05-01}
 \format{
-An object of class \code{spec_tbl_df} (inherits from \code{tbl_df}, \code{tbl}, \code{data.frame}) with 3097 rows and 26 columns.
+An object of class \code{spec_tbl_df} (inherits from \code{tbl_df}, \code{tbl}, \code{data.frame}) with 3153 rows and 26 columns.
 }
 \source{
 \url{covidtracking.com}
@@ -14,6 +14,6 @@ An object of class \code{spec_tbl_df} (inherits from \code{tbl_df}, \code{tbl}, 
 covidtracking
 }
 \description{
-COVID-19 data from COVID Tracking Project, current as of 2020-04-30
+COVID-19 data from COVID Tracking Project, current as of 2020-05-01
 }
 \keyword{datasets}

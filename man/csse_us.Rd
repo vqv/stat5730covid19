@@ -3,9 +3,9 @@
 \docType{data}
 \name{csse_us}
 \alias{csse_us}
-\title{Johns Hopkins CSSE COVID-19 U.S. county-level data, current as of 2020-05-01}
+\title{Johns Hopkins CSSE COVID-19 U.S. county-level data, current as of 2020-05-05}
 \format{
-An object of class \code{tbl_df} (inherits from \code{tbl}, \code{data.frame}) with 326200 rows and 14 columns.
+An object of class \code{tbl_df} (inherits from \code{tbl}, \code{data.frame}) with 339144 rows and 14 columns.
 }
 \source{
 \url{github.com/CSSEGISandData/COVID-19}
@@ -14,6 +14,6 @@ An object of class \code{tbl_df} (inherits from \code{tbl}, \code{data.frame}) w
 csse_us
 }
 \description{
-Johns Hopkins CSSE COVID-19 U.S. county-level data, current as of 2020-05-01
+Johns Hopkins CSSE COVID-19 U.S. county-level data, current as of 2020-05-05
 }
 \keyword{datasets}

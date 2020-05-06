@@ -3,9 +3,9 @@
 \docType{data}
 \name{csse_global}
 \alias{csse_global}
-\title{Johns Hopkins CSSE COVID-19 international data, current as of 2020-05-01}
+\title{Johns Hopkins CSSE COVID-19 international data, current as of 2020-05-05}
 \format{
-An object of class \code{tbl_df} (inherits from \code{tbl}, \code{data.frame}) with 27500 rows and 8 columns.
+An object of class \code{tbl_df} (inherits from \code{tbl}, \code{data.frame}) with 28600 rows and 8 columns.
 }
 \source{
 \url{github.com/CSSEGISandData/COVID-19}
@@ -14,6 +14,6 @@ An object of class \code{tbl_df} (inherits from \code{tbl}, \code{data.frame}) w
 csse_global
 }
 \description{
-Johns Hopkins CSSE COVID-19 international data, current as of 2020-05-01
+Johns Hopkins CSSE COVID-19 international data, current as of 2020-05-05
 }
 \keyword{datasets}

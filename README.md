@@ -55,7 +55,7 @@ different regions globally.
 
 ``` r
 csse_global
-#> # A tibble: 25,854 x 8
+#> # A tibble: 25,662 x 8
 #>    date       province_state country_region cases deaths   lat  long recovered
 #>    <date>     <chr>          <chr>          <dbl>  <dbl> <dbl> <dbl>     <dbl>
 #>  1 2020-01-22 <NA>           Afghanistan        0      0    33    65         0
@@ -68,12 +68,12 @@ csse_global
 #>  8 2020-01-29 <NA>           Afghanistan        0      0    33    65         0
 #>  9 2020-01-30 <NA>           Afghanistan        0      0    33    65         0
 #> 10 2020-01-31 <NA>           Afghanistan        0      0    33    65         0
-#> # … with 25,844 more rows
+#> # … with 25,652 more rows
 ```
 
 ``` r
 csse_us
-#> # A tibble: 303,366 x 14
+#> # A tibble: 306,628 x 14
 #>    date       state fips  cases deaths uid   iso2  iso3  code3 admin2
 #>    <date>     <chr> <chr> <dbl>  <dbl> <chr> <chr> <chr> <chr> <chr> 
 #>  1 2020-01-22 Amer… <NA>      0      0 16.0  AS    ASM   16    <NA>  
@@ -86,7 +86,7 @@ csse_us
 #>  8 2020-01-29 Amer… <NA>      0      0 16.0  AS    ASM   16    <NA>  
 #>  9 2020-01-30 Amer… <NA>      0      0 16.0  AS    ASM   16    <NA>  
 #> 10 2020-01-31 Amer… <NA>      0      0 16.0  AS    ASM   16    <NA>  
-#> # … with 303,356 more rows, and 4 more variables: country_region <chr>,
+#> # … with 306,618 more rows, and 4 more variables: country_region <chr>,
 #> #   lat <dbl>, long <dbl>, combined_key <chr>
 ```
 
@@ -120,24 +120,25 @@ data.
 
 ``` r
 covidtracking
-#> # A tibble: 2,769 x 26
-#>    date       iso2  state fips  cases deaths negative pending hospitalized_cu…
-#>    <date>     <chr> <chr> <chr> <dbl>  <dbl>    <dbl>   <dbl>            <dbl>
-#>  1 2020-04-23 AK    Alas… 02      337      9    11824      NA               42
-#>  2 2020-04-23 AL    Alab… 01     5778    197    46863      NA               NA
-#>  3 2020-04-23 AR    Arka… 05     2465     45    29125      NA              101
-#>  4 2020-04-23 AS    Amer… 60        0     NA        3      17               NA
-#>  5 2020-04-23 AZ    Ariz… 04     5769    249    52928      NA              699
-#>  6 2020-04-23 CA    Cali… 06    37369   1469   444728      NA             4929
-#>  7 2020-04-23 CO    Colo… 08    10878    508    39767      NA              859
-#>  8 2020-04-23 CT    Conn… 09    23100   1639    48397      NA             1947
-#>  9 2020-04-23 DC    Dist… 11     3361    139    12569      NA              402
-#> 10 2020-04-23 DE    Dela… 10     3308     92    13604      NA              290
-#> # … with 2,759 more rows, and 17 more variables: hospitalized_cumulative <dbl>,
-#> #   in_icu_currently <dbl>, in_icu_cumulative <dbl>,
-#> #   on_ventilator_currently <dbl>, on_ventilator_cumulative <dbl>,
-#> #   recovered <dbl>, hash <chr>, date_checked <dttm>, hospitalized <dbl>,
-#> #   total <dbl>, total_test_results <dbl>, pos_neg <dbl>, death_increase <dbl>,
+#> # A tibble: 2,881 x 26
+#>    date       state_abbr state fips  cases deaths negative pending
+#>    <date>     <chr>      <chr> <chr> <dbl>  <dbl>    <dbl>   <dbl>
+#>  1 2020-04-25 AK         Alas… 02      339      9    15393      NA
+#>  2 2020-04-25 AL         Alab… 01     6137    212    65207      NA
+#>  3 2020-04-25 AR         Arka… 05     2829     47    35224      NA
+#>  4 2020-04-25 AS         Amer… 60        0      0        3      17
+#>  5 2020-04-25 AZ         Ariz… 04     6280    266    56228      NA
+#>  6 2020-04-25 CA         Cali… 06    41137   1651   464898      NA
+#>  7 2020-04-25 CO         Colo… 08    12256    674    44533      NA
+#>  8 2020-04-25 CT         Conn… 09    24582   1862    53020      NA
+#>  9 2020-04-25 DC         Dist… 11     3699    165    13603      NA
+#> 10 2020-04-25 DE         Dela… 10     3576    112    14122      NA
+#> # … with 2,871 more rows, and 18 more variables: hospitalized_currently <dbl>,
+#> #   hospitalized_cumulative <dbl>, in_icu_currently <dbl>,
+#> #   in_icu_cumulative <dbl>, on_ventilator_currently <dbl>,
+#> #   on_ventilator_cumulative <dbl>, recovered <dbl>, hash <chr>,
+#> #   date_checked <dttm>, hospitalized <dbl>, total <dbl>,
+#> #   total_test_results <dbl>, pos_neg <dbl>, death_increase <dbl>,
 #> #   hospitalized_increase <dbl>, negative_increase <dbl>,
 #> #   positive_increase <dbl>, total_test_results_increase <dbl>
 ```
@@ -151,7 +152,7 @@ on collecting daily case and death counts at the U.S. county level.
 
 ``` r
 nyt_county
-#> # A tibble: 81,340 x 6
+#> # A tibble: 86,952 x 6
 #>    date       state      county      fips  cases deaths
 #>    <date>     <chr>      <chr>       <chr> <dbl>  <dbl>
 #>  1 2020-01-21 Washington Snohomish   53061     1      0
@@ -164,7 +165,7 @@ nyt_county
 #>  8 2020-01-25 Washington Snohomish   53061     1      0
 #>  9 2020-01-26 Arizona    Maricopa    04013     1      0
 #> 10 2020-01-26 California Los Angeles 06037     1      0
-#> # … with 81,330 more rows
+#> # … with 86,942 more rows
 ```
 
 ### STAT 5730
@@ -250,35 +251,35 @@ census_state_pop
 ``` r
 census_county_pop
 #> # A tibble: 3,220 x 6
-#>    NAME                     GEOID county   state      POP DENSITY
-#>    <chr>                    <chr> <chr>    <chr>    <dbl>   <dbl>
-#>  1 Autauga County, Alabama  01001 Autauga  Alabama  55601    93.5
-#>  2 Baldwin County, Alabama  01003 Baldwin  Alabama 218022   137. 
-#>  3 Barbour County, Alabama  01005 Barbour  Alabama  24881    28.1
-#>  4 Bibb County, Alabama     01007 Bibb     Alabama  22400    36.0
-#>  5 Blount County, Alabama   01009 Blount   Alabama  57840    89.7
-#>  6 Bullock County, Alabama  01011 Bullock  Alabama  10138    16.3
-#>  7 Butler County, Alabama   01013 Butler   Alabama  19680    25.3
-#>  8 Calhoun County, Alabama  01015 Calhoun  Alabama 114277   189. 
-#>  9 Chambers County, Alabama 01017 Chambers Alabama  33615    56.3
-#> 10 Cherokee County, Alabama 01019 Cherokee Alabama  26032    47.0
+#>    NAME                     GEOID county          state      POP DENSITY
+#>    <chr>                    <chr> <chr>           <chr>    <dbl>   <dbl>
+#>  1 Autauga County, Alabama  01001 Autauga County  Alabama  55601    93.5
+#>  2 Baldwin County, Alabama  01003 Baldwin County  Alabama 218022   137. 
+#>  3 Barbour County, Alabama  01005 Barbour County  Alabama  24881    28.1
+#>  4 Bibb County, Alabama     01007 Bibb County     Alabama  22400    36.0
+#>  5 Blount County, Alabama   01009 Blount County   Alabama  57840    89.7
+#>  6 Bullock County, Alabama  01011 Bullock County  Alabama  10138    16.3
+#>  7 Butler County, Alabama   01013 Butler County   Alabama  19680    25.3
+#>  8 Calhoun County, Alabama  01015 Calhoun County  Alabama 114277   189. 
+#>  9 Chambers County, Alabama 01017 Chambers County Alabama  33615    56.3
+#> 10 Cherokee County, Alabama 01019 Cherokee County Alabama  26032    47.0
 #> # … with 3,210 more rows
 ```
 
 ``` r
 census_county_income
 #> # A tibble: 3,220 x 6
-#>    GEOID NAME                       moe county   state   medincome
-#>    <chr> <chr>                    <dbl> <chr>    <chr>       <dbl>
-#>  1 01001 Autauga County, Alabama   2972 Autauga  Alabama     58786
-#>  2 01003 Baldwin County, Alabama   1204 Baldwin  Alabama     55962
-#>  3 01005 Barbour County, Alabama   2552 Barbour  Alabama     34186
-#>  4 01007 Bibb County, Alabama      5618 Bibb     Alabama     45340
-#>  5 01009 Blount County, Alabama    2703 Blount   Alabama     48695
-#>  6 01011 Bullock County, Alabama  10285 Bullock  Alabama     32152
-#>  7 01013 Butler County, Alabama    2026 Butler   Alabama     39109
-#>  8 01015 Calhoun County, Alabama   1578 Calhoun  Alabama     45197
-#>  9 01017 Chambers County, Alabama  2347 Chambers Alabama     39872
-#> 10 01019 Cherokee County, Alabama  1931 Cherokee Alabama     41014
+#>    GEOID NAME                       moe county          state   medincome
+#>    <chr> <chr>                    <dbl> <chr>           <chr>       <dbl>
+#>  1 01001 Autauga County, Alabama   2972 Autauga County  Alabama     58786
+#>  2 01003 Baldwin County, Alabama   1204 Baldwin County  Alabama     55962
+#>  3 01005 Barbour County, Alabama   2552 Barbour County  Alabama     34186
+#>  4 01007 Bibb County, Alabama      5618 Bibb County     Alabama     45340
+#>  5 01009 Blount County, Alabama    2703 Blount County   Alabama     48695
+#>  6 01011 Bullock County, Alabama  10285 Bullock County  Alabama     32152
+#>  7 01013 Butler County, Alabama    2026 Butler County   Alabama     39109
+#>  8 01015 Calhoun County, Alabama   1578 Calhoun County  Alabama     45197
+#>  9 01017 Chambers County, Alabama  2347 Chambers County Alabama     39872
+#> 10 01019 Cherokee County, Alabama  1931 Cherokee County Alabama     41014
 #> # … with 3,210 more rows
 ```

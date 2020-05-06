@@ -3,9 +3,9 @@
 \docType{data}
 \name{ohio_coronavirus}
 \alias{ohio_coronavirus}
-\title{Ohio Department of Health COVID-19 data, current as of 2020-05-01}
+\title{Ohio Department of Health COVID-19 data, current as of 2020-05-05}
 \format{
-An object of class \code{spec_tbl_df} (inherits from \code{tbl_df}, \code{tbl}, \code{data.frame}) with 10699 rows and 9 columns.
+An object of class \code{spec_tbl_df} (inherits from \code{tbl_df}, \code{tbl}, \code{data.frame}) with 11861 rows and 9 columns.
 }
 \source{
 \url{coronavirus.ohio.gov/static/COVIDSummaryData.csv}

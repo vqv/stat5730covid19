@@ -1,4 +1,4 @@
-all: covidtracking google_mobility jhu_csse nyt_county ohio state_orders
+all: covidtracking google_mobility jhu_csse nyt_county ohio state_orders doc readme
 
 readme: README.md
 README.md: README.Rmd
@@ -24,3 +24,6 @@ state_orders:
 
 census:
 	Rscript data-raw/us_census.R
+
+doc:
+	Rscript -e "devtools::document()"
